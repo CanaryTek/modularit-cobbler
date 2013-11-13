@@ -1,0 +1,14 @@
+$SNIPPET('modularit/modularit_name_changeme')
+
+# Configure puppet and ModularIT type
+d-i preseed/late_command string true ; \
+#if $getVar('puppet_server','') != '' and $getVar('modularit_name','') != ''
+	wget --directory-prefix=/target/root ftp://ftp.fr.debian.org/debian/pool/main/p/puppet/puppet_0.24.5-3_all.deb; \
+	in-target dpkg -i /root/puppet_0.24.5-3_all.deb; \
+	echo "DAEMON_OPTS=\"--waitforcert=60 --runinterval=120 --fqdn=$modularit_name --server=$puppet_server\"" > /target/etc/default/puppet ; \
+        (echo "[main]"; echo "    vardir = /var/lib/puppet"; echo "    ssldir = \\$vardir/ssl"; echo "    pluginsync = true"; echo "    factpath = \\$vardir/lib/facter";) > /etc/puppet/puppet.conf ; \
+#end if
+#if $getVar('modularit_type','') != ''
+	echo $modularit_type > /target/etc/modularit-release ; \
+#end if
+	true

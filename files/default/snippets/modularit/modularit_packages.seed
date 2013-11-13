@@ -1,0 +1,5 @@
+#if $getVar('modularit_type','') == 'ebox-squid'
+#set $addonpkgs='ebox-squid '
+#end if
+# Additional packages for $modularit_type
+d-i pkgsel/include string vim less ssh puppet $addonpkgs

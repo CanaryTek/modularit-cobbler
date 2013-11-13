@@ -1,0 +1,7 @@
+#if $getVar('modularit_name','') == 'changeme'
+# generate a random suffix for name (Ok, I'm not a Python master. If there is a less ugly solution it will be welcome)
+#from random import choice
+#set $suffix = ''.join([choice(["1","2","3","4","5","6","7","8","9","0"]) for i in range(8)])
+#set global $modularit_name = $modularit_name+"-"+$suffix
+#end if
+
