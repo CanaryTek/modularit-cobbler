@@ -1,4 +1,4 @@
-modularit-template Cookbook
+modularit-cobbler Cookbook
 ==========================
 
 Sets up a cobbler server for unattended SO deployments
@@ -27,6 +27,15 @@ Once the cobbler server is up and running, you can install a new ModularIT base 
 Import CentOS 6 using rsync:
 
     cobbler import --path=rsync://rsync.cica.es/CentOS/6/os --name=centos6-x86_64 --arch=x86_64
+
+LWRP
+----
+
+There are resource definitions for each cobbler entity:
+
+  * modularit_cobbler_distro: Define a cobbler distro
+  * modularit_cobbler_profile: Define a cobbler profile
+  * system: Not yet
 
 Contributing
 ------------
