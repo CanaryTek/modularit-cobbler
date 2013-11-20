@@ -19,5 +19,5 @@ default['cobbler']['server']['default_virt_bridge'] =" virbr0"
 default['cobbler']['server']['default_virt_file_size'] = "5"
 default['cobbler']['server']['default_virt_ram'] = "512"
 default['cobbler']['server']['default_virt_type'] = "qemu"
-default['cobbler']['server']['enable_gpxe'] = "1"
+default['cobbler']['server']['enable_gpxe'] = "0"
 

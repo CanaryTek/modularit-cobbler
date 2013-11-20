@@ -1,5 +1,5 @@
 ## Cookbook Name:: modularit-cobbler
-## Resource:: profile
+## Resource:: repo
 ##
 ## Copyright 2013, CanaryTek
 #
@@ -16,16 +16,17 @@
 # limitations under the License.
 #
 
-## Manage Cobbler profiles
+## Manage Cobbler repos
 
 actions :add, :remove
 
 # Mandatory args
 attribute :name, :kind_of => String, :name_attribute => true
-attribute :distro, :kind_of => String, :required => true
+attribute :mirror, :kind_of => String, :required => true
 
 # Optional args
-ARGS = %w[ distro parent enable_gpxe enable_menu kickstart kopts kopts_post ksmeta proxy repos comment virt_auto_boot virt_cpus virt_file_size virt_disk_driver virt_ram depth virt_type virt_path virt_bridge dhcp_tag server name_servers name_servers_search mgmt_classes mgmt_parameters boot_files fetchable_files template_files template_remote_kickstarts ]
+ARGS = %w[ apt_components apt_dists arch breed comment keep_updated parent rpm_list createrepo_flags environment mirror_locally priority yumopts ]
+
 
 ARGS.each do |arg|
   attribute arg.to_sym, :kind_of => String

@@ -18,6 +18,8 @@ Read the files, they are well documented (I hope)
 Usage
 -----
 
+To setup a cobbler server, just add `recipe[modularit-cobbler::server]` to it's runlist. If you want to setup basic profiles for remote installation of CenTOS 6 and Debian 7, you can use `recipe[modularit-cobbler::defaultrepos]`
+
 #### modularit-cobbler::default
 
 Once the cobbler server is up and running, you can install a new ModularIT base system with the following command:
@@ -33,9 +35,37 @@ LWRP
 
 There are resource definitions for each cobbler entity:
 
-  * modularit_cobbler_distro: Define a cobbler distro
-  * modularit_cobbler_profile: Define a cobbler profile
-  * system: Not yet
+#### modularit_cobbler_distro
+
+Defines a Cobbler distro
+
+    modularit_cobbler_distro "centos6-x86_64-remote" do
+      action :add
+      comment "CentOS 6 remote install"
+      kernel "http://mirror.centos.org/centos/6/os/i386/images/pxeboot/vmlinuz"
+      initrd "http://mirror.centos.org/centos/6/os/i386/images/pxeboot/initrd.img"
+      arch "x86_64"
+      ksmeta "tree=http://mirror.centos.org/centos/6/os/x86_64"
+    end
+
+#### modularit_cobbler_profile
+
+Define a cobbler profile
+
+    modularit_cobbler_profile "modularit-base-x86_64" do
+      action :add
+      comment "CentOS 6 modularit base"
+      distro "centos6-x86_64-remote"
+      kickstart "/var/lib/cobbler/kickstarts/modularit/modularit2_base.ks"
+      virt_bridge "virbr0"
+      virt_type "kvm"
+      kopts "serial console=ttyS0,38400"
+      kopts_post "console=ttyS0,38400"
+    end
+
+#### modularit_cobbler_system
+
+Define a cobbler system
 
 Contributing
 ------------

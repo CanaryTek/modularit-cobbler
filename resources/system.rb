@@ -1,5 +1,5 @@
 ## Cookbook Name:: modularit-cobbler
-## Resource:: profile
+## Resource:: system
 ##
 ## Copyright 2013, CanaryTek
 #
@@ -22,10 +22,9 @@ actions :add, :remove
 
 # Mandatory args
 attribute :name, :kind_of => String, :name_attribute => true
-attribute :distro, :kind_of => String, :required => true
 
 # Optional args
-ARGS = %w[ distro parent enable_gpxe enable_menu kickstart kopts kopts_post ksmeta proxy repos comment virt_auto_boot virt_cpus virt_file_size virt_disk_driver virt_ram depth virt_type virt_path virt_bridge dhcp_tag server name_servers name_servers_search mgmt_classes mgmt_parameters boot_files fetchable_files template_files template_remote_kickstarts ]
+ARGS = %w[ profile image status kopts kopts_post ksmeta enable_gpxe proxy netboot_enabled kickstart comment virt_path virt_type virt_cpus virt_file_size virt_disk_driver virt_ram virt_auto_boot virt_pxe_boot power_type power_address power_user power_pass power_id hostname gateway name_servers name_servers_search ipv6_default_device ipv6_autoconfiguration mac_address mtu ip_address interface_type bonding interface_master bonding_master bonding_opts bridge_opts management static netmask subnet if_gateway dhcp_tag dns_name static_routes virt_bridge ipv6_address ipv6_secondaries ipv6_mtu ipv6_static_routes ipv6_default_gateway mgmt_classes mgmt_parameters boot_files fetchable_files template_files template_remote_kickstarts repos_enabled ldap_enabled ldap_type monit_enabled cnames interface delete_interface rename_interface ]
 
 ARGS.each do |arg|
   attribute arg.to_sym, :kind_of => String
