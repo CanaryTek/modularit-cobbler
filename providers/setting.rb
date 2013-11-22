@@ -24,7 +24,7 @@ end
 action :edit do
   converge_by("Creating system #{new_resource.name}") do
     Chef::Log.info "Changing cobbler setting #{new_resource.name} to #{new_resource.value}"
-    cmd="cobbler setting edit --name #{new_resource.name} --value #{new_resource.value}"
+    cmd="cobbler setting edit --name #{new_resource.name} --value '#{new_resource.value}'"
     Chef::Log.debug "  cmd #{cmd}"
     system(cmd)
   end
