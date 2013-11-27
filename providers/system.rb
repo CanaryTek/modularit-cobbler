@@ -29,7 +29,7 @@ action :add do
     myargs += "--#{arg.tr("_","-")} '#{new_resource.send(arg)}' " if new_resource.send(arg)
   end
   # If profile exists, edit
-  if system("cobbler profile find --name #{new_resource.name} | grep -q #{new_resource.name}")
+  if system("cobbler system find --name #{new_resource.name} | grep -q #{new_resource.name}")
     Chef::Log.info "Editing system #{new_resource.name} "
     command="edit"
   else
